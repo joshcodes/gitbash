@@ -1,0 +1,11 @@
+echo "mv $1 ./__tmp"
+mv $1 ./__tmp
+echo "git submodule deinit $1"
+git submodule deinit $1    
+echo "git rm --cached $1"
+git rm $1
+echo "mv __tmp $1"
+mv __tmp $1
+echo "rm -rf .git/modules/$1"
+rm -rf .git/modules/$1
+
