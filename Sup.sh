@@ -1,8 +1,15 @@
+basedir=`pwd`
+echo "BASEDIR:$basedir"
 modules=`cat .gitmodules | grep "\[submodule" | sed -e s/.*\ \"//g | sed -e s/\"]//g`
+echo $modules
 for module in $modules; do
-	cd $module
+	echo "CD $basedir/$module"
+	dir=`echo "$basedir/$module" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
+	cd $dir
+	echo "CHECKOUT....."
 	git checkout master
 	git pull origin master
-	cd ..
+	cd $basedir
+	echo "DONE"
 done
 
